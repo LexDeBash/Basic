@@ -1,0 +1,27 @@
+<<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Ефимов Алексей</title>
+</head>
+<body>
+<button onclick="Start()">Выполнить</button><br>
+<img src="HW_2.3.jpeg">
+<script>
+	function Start() {
+		// body...
+		var a = Number (prompt("Введите первое число"));
+		var b = Number (prompt("Введите второе число"));
+		while (a!=b){
+			if (a>b){
+				a = a-b
+			}
+			else{
+				b = b-a
+			}
+		}
+		alert ("НОД равен " + a)
+	}
+</script>
+</body>
+</html>

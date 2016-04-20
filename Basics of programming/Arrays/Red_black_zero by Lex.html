@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<script>
+var arr = [];
+var red = -1;
+var zero = 0;
+var black = 1;
+var length = 0;
+var max_length = 0;
+for (var i = 0; i < 500000; i++) {
+	if ((Math.round(Math.random()*red)) < 0){
+		arr.push(red);
+	}
+	else {
+		arr.push(zero);
+	}
+}
+for (var i = 0; i < 500000; i++) {
+	if ((Math.round(Math.random()*black)) > 0){
+		arr.push(black);
+	}
+	else {
+		arr.push(zero);
+	}
+}
+alert (arr);
+for (i = 0; i < arr.length; i++) {
+	if (arr[i] == red) {
+		 length = 0
+		while (i < arr.length && arr[i] == red) {
+			i++;
+			length++;
+		}
+		if (length > max_length) {
+			max_length = length;
+		}
+	}
+}
+alert("Максимальная длина красной последовательности: " + max_length);
+
+</script>

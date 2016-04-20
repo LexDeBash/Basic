@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+<script>
+
+//Функция выбора рандомного числа
+function getRandom(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//Функция для раздачи карт
+function getCard() {
+	var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+	return cards[getRandom(0, cards.length -1)];
+}
+
+//Функция для подсчета суммы карт на руках
+function getSum(arr) {
+	var sum = 0;
+
+	//Подсчет суммы выпавших карт, без учета туза
+	for (var i = 0; i < arr.length; i++) {
+		var card = arr[i];
+		if (card != 'A') {
+			if (card == 'J' || card == 'Q' || card == 'K') {
+			sum = sum + 10;
+			}
+			else {
+				sum = sum + parseInt(card);
+			}
+		}
+	}
+
+	//Подсчет суммы выпавших карт с учетом туза
+	for (var i = 0; i < arr.length; i++) {
+		var card = arr[i];
+		//Если туз выпадает к сумме больше 10, то туз считается за 1 очко
+		if (card == 'A') {
+			if (sum > 10) {
+				sum = sum +1;
+			}
+			//Если туз выпадает к сумме менее 10, то туз считается за 11 очков
+			else {
+				sum = sum + 11;
+			}
+		}
+	}
+
+
+	return sum;
+}
+
+//Функция для отображения розданных карт
+function getStatus() {
+	return "Дилер: " + dealer.join(' ') + " Игрок: " + player.join(' ') + (' - ');
+}
+
+
+
+do {
+	var dealer = [getCard()]; //Карты на руках у дилера
+	var player = [getCard(), getCard()]; //Карты на руках у игрока
+	//var player = ['Q', 'A']; //Для проверки
+
+
+	//Слово за игроком
+	do {
+		//Если при первой раздаче выпадает Black Jack
+		if (getSum(player) == 21) {
+			alert ('Поздравляем! У вас Black Jack! ' + getStatus());
+			break;
+		}
+		//Если Black Jack не выпал при первой раздаче
+		var answer = prompt(getStatus() + '  Еще карту? Введите "1" для согласия')
+		//Сдаем карты игроку, либо прекращаем раздачу
+		if (answer == 1) {
+			player.push(getCard());
+		}
+		//Проверяем нет ли перебора
+		if (getSum(player) > 21){
+			alert ('Перебор! ' + getStatus());
+			break;
+		}
+
+	} while (answer == 1 && getSum(player) <= 21)
+
+	//Если игрок пасует, то далее в игру вступает дилер
+	while (getSum(dealer) < 17 && getSum(player) < 21) {
+		dealer.push(getCard());
+	}
+
+	//Проверяем результат
+	var sumDealer = getSum(dealer);
+	var sumPlayer = getSum(player);
+
+	while (getSum(player) < 21) {
+		if (sumDealer == 21) {
+			alert ('У дилера Black Jack ' + getStatus());
+			break;
+		}
+		else if (sumDealer > 21) {
+			alert ('У дилера перебор! ' + getStatus());
+			break;
+		}
+		else if (sumPlayer == sumDealer) {
+			alert ('Ничья! ' + getStatus());
+			break;
+		}
+		else if (sumPlayer > sumDealer) {
+			alert ("Поздравляем вы выиграли! " + getStatus());
+			break;
+		}
+		else {
+			alert ('Вы проиграли! ' + getStatus());
+			break;
+		}
+	}
+	var topAnswer = prompt ('Еще партию? 1 - Да, 0 - Нет')
+}
+while (topAnswer == 1) 
+
+</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Ефимов Алексей</title>
+</head>
+<body>
+<button onClick = "Start()">Выполнить</button><br>
+<img src="HW_2.1.jpeg">
+<script>
+	function Start() {
+		// body...
+		var a = Number (prompt("Введите первое число"));
+		var b = Number (prompt("Введите второе число"));
+		var c = Number (prompt("Введите третье число"));
+		var n;
+		if ((a<b) && (b<c)) n = b;
+		if ((a<b) && (b>c)) n = a;
+		if ((a>b) && (b<c)) n = c
+		alert (("Среднее по значению число: ") + n);
+	}
+</script>
+</body>
+</html>

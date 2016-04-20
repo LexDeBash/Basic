@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<script>
+	function Main () {
+		var a = parseInt(prompt("Введите первое число"));
+		var b = parseInt(prompt("Введите второе число"));
+		var c = parseInt(prompt("Введите третье число"));
+		return Max (a,b,c) / Min (a,b,c);
+	}
+
+	function Max (a,b,c) {
+		var max;
+		if (a>b) {
+			max = a;
+		}
+		else {
+			max = b;
+		}
+		if (c>max) {
+			max = c;
+		}
+		return max;
+	}
+	
+	function Min (a,b,c) {
+		var min;
+		if (a<b) {
+			min = a;
+		}
+		else {
+			min = b;
+		}
+		if (c<min) {
+			min = c;
+		}
+		return min; 
+	}
+
+	
+	alert ("Частное между макисмальным и минимальным числами:" +Main ());
+	
+</script>
